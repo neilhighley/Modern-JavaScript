@@ -1,8 +1,7 @@
-var axios = require('axios');
-
-var id = "YOUR_CLIENT_ID";
-var sec = "YOUR_SECRET_ID";
-var params = `?client_id=${id}&client_secret=${sec}`;
+const axios = require('axios');
+const id = "YOUR_CLIENT_ID";
+const sec = "YOUR_SECRET_ID";
+const params = `?client_id=${id}&client_secret=${sec}`;
 
 
 function getProfile (username) {
@@ -47,10 +46,8 @@ module.exports = {
       .catch(handleError);
   },
   fetchPopularRepos: (language) =>{
-    const encodedURI = window.encodeURI(`https://api.github.com/search/
-    repositories?q=stars:>1+language:${language}
-    &sort=stars&order=desc&type=Repositories`);
+    const encodedURI = window.encodeURI(`https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`);
 
-    return Promise.get(encodedURI).then(({data}) => data.items);
+    return axios.get(encodedURI).then(({data}) => data.items);
   }
 };
